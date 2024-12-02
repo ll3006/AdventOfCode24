@@ -32,6 +32,12 @@ def part_one_v2():
     tot_distance  = sum(abs(x-y) for x,y in zip(list1, list2))
     print(f"Total distance is {tot_distance}")
 
+def part_two():
+    list1, list2 = input()
+    
+    similarity_value = sum(i * list2.count(i) for i in list1)
+    print(f"Total distance is {similarity_value}")
 
 if __name__ == "__main__":
     part_one_v2()
+    part_two()
