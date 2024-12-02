@@ -3,7 +3,7 @@ Pair up the smallest number in the left list with the smallest number in the rig
 Within each pair, figure out how far apart the two numbers are; you'll need to add up all of those distances. For example, if you pair up a 3 from the left list with a 7 from the right list, the distance apart is 4; if you pair up a 9 with a 3, the distance apart is 6.
 */
 
-use std::{env, fs};
+use std::{env, fs, iter::zip};
 
 fn input() -> (Vec<isize>, Vec<isize>) {
     let mut list1: Vec<isize> = vec![];
@@ -39,6 +39,15 @@ fn part_one() {
     println!("Total diff is {total_diff}");
 }
 
+fn part_one_v2() {
+    let (mut list1, mut list2) = input();
+    list1.sort_unstable();
+    list2.sort_unstable();
+    
+    let total_diff = zip(list1, list2).fold(0, |acc, (a, b)| acc + a.abs_diff(b));
+    println!("Total diff is {total_diff}");
+}
+
 
 fn part_two() {
     let (list1, list2) = input();
@@ -51,7 +60,8 @@ fn part_two() {
     
     println!("Similarity score is {similarity_score}");
 }
-fn main() { 
+fn main() {
     part_one();
+    part_one_v2();
     part_two();
 }
